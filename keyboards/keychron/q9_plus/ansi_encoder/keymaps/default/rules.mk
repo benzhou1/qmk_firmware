@@ -1,2 +1,5 @@
 VIA_ENABLE = yes
 ENCODER_MAP_ENABLE = yes
+VPATH = keyboards/gboards
+COMBO_ENABLED = yes
+TAP_DANCE_ENABLE = yes

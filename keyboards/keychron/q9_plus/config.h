@@ -16,6 +16,13 @@
 
 #pragma once
 
+#define COMBO_SHOULD_TRIGGER
+#define TAPPING_TERM 175
+#define TAPPING_TERM_PER_KEY
+#define COMBO_TERM 40
+#define COMBO_STRICT_TIMER
+
+#define DYNAMIC_KEYMAP_LAYER_COUNT 10
 /* RGB Matrix Driver Configuration */
 #define SNLED27351_I2C_ADDRESS_1 SNLED27351_I2C_ADDRESS_GND
 
@@ -31,4 +38,4 @@
     { 0xF8, 0xF8, 0x70, 0xF8, 0xF8, 0x70, 0xF8, 0xF8, 0x70, 0xF8, 0xF8, 0x70 }
 
 /* Old default behavior of mod-taps */
-#define HOLD_ON_OTHER_KEY_PRESS
+/* #define HOLD_ON_OTHER_KEY_PRESS */
