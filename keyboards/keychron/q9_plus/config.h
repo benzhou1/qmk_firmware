@@ -16,13 +16,14 @@
 
 #pragma once
 
-#define COMBO_SHOULD_TRIGGER
+/* #define COMBO_SHOULD_TRIGGER */
 #define TAPPING_TERM 175
-#define TAPPING_TERM_PER_KEY
-#define COMBO_TERM 40
-#define COMBO_STRICT_TIMER
-
+/* #define TAPPING_TERM_PER_KEY */
+/* #define COMBO_TERM 40 */
+/* #define COMBO_STRICT_TIMER */
 #define DYNAMIC_KEYMAP_LAYER_COUNT 10
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
+
 /* RGB Matrix Driver Configuration */
 #define SNLED27351_I2C_ADDRESS_1 SNLED27351_I2C_ADDRESS_GND
 

@@ -29,42 +29,6 @@ enum layers_enums {
     LY_F
 };
 
-// Tap Dance declarations
-enum td_enums {
-    TD_DOT_RSFT_SLSH,
-    TD_LSFT_Z,
-};
-
-// Define a type containing as many tapdance states as you need
-typedef enum {
-    TD_NONE,
-    TD_UNKNOWN,
-    TD_SINGLE_TAP,
-    TD_SINGLE_HOLD,
-    TD_DOUBLE_SINGLE_TAP
-} td_state_t;
-
-// Create a global instance of the tapdance state type
-static td_state_t td_state;
-
-// Declare your tapdance functions:
-
-// Function to determine the current tapdance state
-td_state_t cur_dance(tap_dance_state_t *state);
-
-// `finished` and `reset` functions for each tapdance keycode
-void td_dot_rsft_slsh_finished(tap_dance_state_t *state, void *user_data);
-void td_dot_rsft_slsh_reset(tap_dance_state_t *state, void *user_data);
-void td_lsft_z_finished(tap_dance_state_t *state, void *user_data);
-void td_lsft_z_reset(tap_dance_state_t *state, void *user_data);
-
-// Tap Dance definitions
-tap_dance_action_t tap_dance_actions[] = {
-    [TD_DOT_RSFT_SLSH] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_dot_rsft_slsh_finished, td_dot_rsft_slsh_reset),
-    [TD_LSFT_Z] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_lsft_z_finished, td_lsft_z_reset),
-    /* [TD_LSFT_Z] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_Z), */
-};
-
 enum keys {
     KEY_TAB, KEY_Q, KEY_W, KEY_E, KEY_R, KEY_T, KEY_Y, KEY_U, KEY_I, KEY_O, KEY_P, KEY_LBRACKET, KEY_RBRACKET, KEY_BACKSLASH, KEY_MUTE,
     KEY_CAPS, KEY_A, KEY_S, KEY_D, KEY_F , KEY_G, KEY_H, KEY_J, KEY_K, KEY_L, KEY_SEMICOLON, KEY_QUOTE, KEY_ENTER, KEY_WIN_FN2,
@@ -220,11 +184,11 @@ const uint16_t nav_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_D] = _______,
     [KEY_F] = _______,
     [KEY_G] = _______,
-    [KEY_H] = KC_B,
+    [KEY_H] = _______,
     [KEY_J] = KC_LEFT,
     [KEY_K] = KC_DOWN,
     [KEY_L] = KC_RIGHT,
-    [KEY_SEMICOLON] = KC_E,
+    [KEY_SEMICOLON] = _______,
     [KEY_QUOTE] = _______,
     [KEY_ENTER] = _______,
     [KEY_WIN_FN2] = _______,
@@ -259,16 +223,16 @@ const uint16_t nav_layer[MATRIX_ROWS * MATRIX_COLS] = {
 
 const uint16_t num_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_TAB] = _______,
-    [KEY_Q] = _______,
-    [KEY_W] = _______,
-    [KEY_E] = _______,
-    [KEY_R] = _______,
-    [KEY_T] = _______,
-    [KEY_Y] = _______,
+    [KEY_Q] = KC_1,
+    [KEY_W] = KC_2,
+    [KEY_E] = KC_3,
+    [KEY_R] = KC_4,
+    [KEY_T] = KC_5,
+    [KEY_Y] = KC_6,
     [KEY_U] = KC_7,
     [KEY_I] = KC_8,
     [KEY_O] = KC_9,
-    [KEY_P] = _______,
+    [KEY_P] = KC_0,
     [KEY_LBRACKET] = _______,
     [KEY_RBRACKET] = _______,
     [KEY_BACKSLASH] = _______,
@@ -280,10 +244,10 @@ const uint16_t num_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_D] = _______,
     [KEY_F] = _______,
     [KEY_G] = _______,
-    [KEY_H] = KC_0,
-    [KEY_J] = KC_4,
-    [KEY_K] = KC_5,
-    [KEY_L] = KC_6,
+    [KEY_H] = _______,
+    [KEY_J] = _______,
+    [KEY_K] = _______,
+    [KEY_L] = _______,
     [KEY_SEMICOLON] = _______,
     [KEY_QUOTE] = _______,
     [KEY_ENTER] = _______,
@@ -295,10 +259,10 @@ const uint16_t num_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_C] = _______,
     [KEY_V] = _______,
     [KEY_B] = _______,
-    [KEY_N] = KC_DOT,
-    [KEY_M] = KC_1,
-    [KEY_COMMA] = KC_2,
-    [KEY_DOT] = KC_3,
+    [KEY_N] = _______,
+    [KEY_M] = _______,
+    [KEY_COMMA] = _______,
+    [KEY_DOT] = _______,
     [KEY_SLASH] = _______,
     [KEY_RSHIFT] = _______,
     [KEY_UP] = _______,
@@ -367,8 +331,8 @@ const uint16_t f_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_LCTRL] = _______,
     [KEY_LGUI] = _______,
     [KEY_LALT] = _______,
-    [KEY_SPACE1] = _______,
-    [KEY_SPACE2] = _______,
+    [KEY_SPACE1] = KC_MEDIA_NEXT_TRACK,
+    [KEY_SPACE2] = KC_MEDIA_PLAY_PAUSE,
     [KEY_RALT] = _______,
     [KEY_RGUI] = _______,
     [KEY_FN1] = _______,
@@ -459,8 +423,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [LY_PUNC] = CREATE_LAYOUT(punc_layer),
     [LY_NAV] = CREATE_LAYOUT(nav_layer),
-    [LY_NUM] = CREATE_LAYOUT(num_layer),
     [LY_F] = CREATE_LAYOUT(f_layer),
+    [LY_NUM] = CREATE_LAYOUT(num_layer),
 };
 
 #if defined(ENCODER_MAP_ENABLE)
@@ -470,61 +434,22 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [MAC_FN1] = {ENCODER_CCW_CW(RGB_MOD, RGB_RMOD)},
     [WIN_FN1] = {ENCODER_CCW_CW(RGB_MOD, RGB_RMOD)},
     [LY_PUNC] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [LY_NAV] = {ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
+    [LY_NAV] = {ENCODER_CCW_CW(KC_PGDN, KC_PGUP)},
     [LY_NUM] = {ENCODER_CCW_CW(_______, _______)},
     [LY_F] = {ENCODER_CCW_CW(KC_BRID, KC_BRIU)},
 };
 #endif
 
 
-// Determine the tapdance state to return
-td_state_t cur_dance(tap_dance_state_t *state) {
-    if (state->count == 1) {
-        if (!state->pressed) return TD_SINGLE_TAP;
-            /* if (state->interrupted || !state->pressed) return TD_SINGLE_TAP; */
-        else return TD_SINGLE_HOLD;
-    }
-
-    if (state->count == 2) return TD_DOUBLE_SINGLE_TAP;
-    else return TD_UNKNOWN; // Any number higher than the maximum state value you return above
-}
-
-// Handle the possible states for each tapdance keycode you define:
-void td_dot_rsft_slsh_finished(tap_dance_state_t *state, void *user_data) {
-    if (!layer_state_is(MAC_BASE)) {
-        return;
-    }
-    td_state = cur_dance(state);
-    switch (td_state) {
-        case TD_SINGLE_TAP:
-            register_code16(KC_DOT);
-            break;
-        case TD_SINGLE_HOLD:
-            register_mods(MOD_BIT(KC_RSFT)); // For a layer-tap key, use `layer_on(_MY_LAYER)` here
-            break;
-        case TD_DOUBLE_SINGLE_TAP:
-            register_code16(KC_SLSH);
-            break;
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LSFT_T(KC_Z):
+        case RSFT_T(KC_DOT):
+            // Immediately select the hold action when another key is pressed.
+            return true;
         default:
-            break;
-    }
-}
-
-void td_dot_rsft_slsh_reset(tap_dance_state_t *state, void *user_data) {
-    unregister_mods(MOD_BIT(KC_RSFT)); // For a layer-tap key, use `layer_off(_MY_LAYER)` here
-    td_state = cur_dance(state);
-    switch (td_state) {
-        case TD_SINGLE_TAP:
-            unregister_code16(KC_DOT);
-            break;
-        case TD_SINGLE_HOLD:
-            unregister_mods(MOD_BIT(KC_RSFT)); // For a layer-tap key, use `layer_off(_MY_LAYER)` here
-            break;
-        case TD_DOUBLE_SINGLE_TAP:
-            unregister_code16(KC_SLSH);
-            break;
-        default:
-            break;
+            // Do not select the hold action when another key is pressed.
+            return false;
     }
 }
 
@@ -539,96 +464,112 @@ bool get_combo_must_tap(uint16_t index, combo_t *combo) {
 
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
     switch (combo_index) {
-        case FD_UNDERSCORE:
-        case FS_MINUS:
-        case FX_GRAVE:
-        case FN_ASTERISK:
-        case FH_EQUAL:
-        case FO_LEFT_PAREN:
-        case FP_RIGHT_PAREN:
-        case FU_LBRC:
-        case FI_RBRC:
-        case FM_LEFT_CURLY_BRACE:
-        case FCOMM_RIGHT_CURLY_BRACE:
-        case FB_PIPE:
-
-        case JK_QUOTE:
-        case JL_DOUBLE_QUOTE:
-        case JG_TILDE:
-        case JT_PERCENT:
-
-        case SCLNH_0:
-        case SCLNM_1:
-        case SCLNCOMM_2:
-        case SCLNDOT_3:
-        case SCLNK_5:
-        case SCLNL_6:
-        case SCLNU_7:
-        case SCLNI_8:
-        case SCLNO_9:
-
-        case AH_0:
-        case AM_1:
-        case ACOMM_2:
-        case ADOT_3:
-        case AJ_4:
-        case AK_5:
-        case AL_6:
-        case AU_7:
-        case AI_8:
-        case AO_9:
-
-        case SU_F7:
-        case SI_F8:
-        case SO_F9:
-        case SP_F10:
-
-        case CW_CAW:
-        case YW_YAW:
-        case DW_DAW:
-        case VW_VAW:
-        case VP_VAWP:
-        case YP_YYP:
-        case YT_YPERCENT:
-        case VT_VPERCENT:
-        case DT_DPERCENT:
-        case CT_CPERCENT:
-        case CJL_CADQUOTE:
-        case YJL_YADQUOTE:
-        case DJL_DADQUOTE:
-        case VJL_VADQUOTE:
-        case CJK_CAQUOTE:
-        case YJK_YAQUOTE:
-        case DJK_DAQUOTE:
-        case VJK_VAQUOTE:
-        case CFU_CALBRC:
-        case YFU_YALBRC:
-        case DFU_DALBRC:
-        case VFU_VALBRC:
-        case CFO_CALPAREN:
-        case YFO_YALPAREN:
-        case DFO_DALPAREN:
-        case VFO_VALPAREN:
-        case CFM_CALCURLY:
-        case YFM_YALCURLY:
-        case DFM_DALCURLY:
-        case VFM_VALCURLY:
-        case CAP_CAP:
-        case YAP_YAP:
-        case DAP_DAP:
-        case VAP_VAP:
+          case FA_TAB:
+          case JSCLN_ENT:
+          case FD_LY_PUNC:
+          case DK_LY_NAV:
+          case DJ_LT_LYNAV_LEFT:
+          case DI_LT_LYNAV_UP:
+          case DK_LT_LYNAV_DOWN:
+          case DL_LT_LYNAV_RIGHT:
+          case SL_LY_NUM:
+          case ASCLNLSFT_TGLY_F:
+          case DK_LY_NUM:
+          case FQ_ESC:
+          case FW_AT:
+          case FE_HASH:
+          case FR_DOLLAR:
+          case FY_CIRCUMFLEX:
+          case FU_LBRC:
+          case FI_RBRC:
+          case FO_LEFT_PAREN:
+          case FP_RIGHT_PAREN:
+          case FS_MINUS:
+          case FD_UNDERSCORE:
+          case FH_EQUAL:
+          case FX_GRAVE:
+          case FB_PIPE:
+          case FN_ASTERISK:
+          case FM_LEFT_CURLY_BRACE:
+          case FCOMM_RIGHT_CURLY_BRACE:
+          case JQ_EXLM:
+          case JW_AT:
+          case JE_HASH:
+          case JR_DOLLAR:
+          case JT_PERCENT:
+          case JG_TILDE:
+          case JK_QUOTE:
+          case JL_DOUBLE_QUOTE:
+          case JC_QUES:
+          case JV_AMPERSAND:
+          case JB_PIPE:
+          case JRSFT_DOT_SLSH:
+          case DU_0:
+          case DO_DOLLAR:
+          case LQ_1:
+          case SQ_1:
+          case LW_2:
+          case SE_3:
+          case LE_3:
+          case SR_4:
+          case LR_4:
+          case ST_5:
+          case LT_5:
+          case SY_6:
+          case LY_6:
+          case SU_7:
+          case LU_7:
+          case SI_8:
+          case LI_8:
+          case SO_9:
+          case SP_0:
+          case LP_0:
+          case AU_F7:
+          case SCLNU_F7:
+          case AI_F8:
+          case SCLNI_F8:
+          case AO_F9:
+          case SCLNO_F9:
+          case SP_F10:
+          case SCLNP_F10:
+          case CW_CAW:
+          case DW_DAW:
+          case VW_VAW:
+          case YW_YAW:
+          case VP_VAWP:
+          case YP_YYP:
+          case CJL_CADQUOTE:
+          case DJL_DADQUOTE:
+          case VJL_VADQUOTE:
+          case YJL_YADQUOTE:
+          case CJK_CAQUOTE:
+          case DJK_DAQUOTE:
+          case VJK_VAQUOTE:
+          case YJK_YAQUOTE:
+          case CFU_CALBRC:
+          case DFU_DALBRC:
+          case VFU_VALBRC:
+          case YFU_YALBRC:
+          case CFO_CALPAREN:
+          case DFO_DALPAREN:
+          case VFO_VALPAREN:
+          case YFO_YALPAREN:
+          case CFM_CALCURLY:
+          case DFM_DALCURLY:
+          case VFM_VALCURLY:
+          case YFM_YALCURLY:
+          case CAP_CAP:
+          case DAP_DAP:
+          case VAP_VAP:
+          case YAP_YAP:
             if (!layer_state_is(MAC_BASE)) {
                 return false;
             }
             return true;
 
-        case C_RBRCC:
-        case CLSFT_LBRCC:
-        case F_RBRCF:
-        case FLSFT_LBRCF:
-        case D_RBRCD:
-        case DLSFT_LBRCD:
-            if (!layer_state_is(LY_NAV)) {
+        case JP_BSPC:
+        case JO_DEL:
+            if (!layer_state_is(MAC_BASE) && !layer_state_is(LY_NUM)) {
                 return false;
             }
             return true;
