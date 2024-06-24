@@ -1,3 +1,4 @@
 COMBO_ENABLE = yes
 VPATH = keyboards/gboards
 TAP_DANCE_ENABLE = no
+DYNAMIC_TAPPING_TERM_ENABLE = yes

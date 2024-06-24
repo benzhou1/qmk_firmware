@@ -17,18 +17,18 @@
 
 enum layers_enums {
     BASE,
-    LY_GAME,
     LY_PUNC,
     LY_NAV,
     LY_NUM,
-    LY_F
+    LY_F,
+    LY_GAME
 };
 
 enum keys {
-    KEY_Q, KEY_W, KEY_E, KEY_R, KEY_T, KEY_Y, KEY_U, KEY_I, KEY_O, KEY_P,
+    KEY_Q, KEY_W, KEY_E, KEY_R, KEY_T, KEY_ENC_1, KEY_Y, KEY_U, KEY_I, KEY_O, KEY_P,
     KEY_A, KEY_S, KEY_D, KEY_F , KEY_G, KEY_H, KEY_J, KEY_K, KEY_L, KEY_SEMICOLON,
-    KEY_Z, KEY_X, KEY_C, KEY_V , KEY_B, KEY_N, KEY_M, KEY_COMMA, KEY_DOT, KEY_SLASH,
-    KEY_LALT, KEY_SPACE1, KEY_SPACE2
+    KEY_Z, KEY_X, KEY_C, KEY_V , KEY_B, KEY_ENC_3, KEY_N, KEY_M, KEY_COMMA, KEY_DOT, KEY_SLASH,
+    KEY_LALT, KEY_SPACE1, KEY_SPACE2, KEY_LALT2
 };
 
 enum custom_keycodes {
@@ -38,7 +38,7 @@ enum custom_keycodes {
     RIGHT_CHANGE_LAYER,
 };
 
-#define CREATE_LAYOUT(layer_keys) LAYOUT_reviung34_2u(layer_keys[KEY_Q],layer_keys[KEY_W],layer_keys[KEY_E],layer_keys[KEY_R],layer_keys[KEY_T],layer_keys[KEY_Y],layer_keys[KEY_U],layer_keys[KEY_I],layer_keys[KEY_O],layer_keys[KEY_P],layer_keys[KEY_A],layer_keys[KEY_S],layer_keys[KEY_D],layer_keys[KEY_F],layer_keys[KEY_G],layer_keys[KEY_H],layer_keys[KEY_J],layer_keys[KEY_K],layer_keys[KEY_L],layer_keys[KEY_SEMICOLON],layer_keys[KEY_Z],layer_keys[KEY_X],layer_keys[KEY_C],layer_keys[KEY_V],layer_keys[KEY_B],layer_keys[KEY_N],layer_keys[KEY_M],layer_keys[KEY_COMMA],layer_keys[KEY_DOT],layer_keys[KEY_SLASH],layer_keys[KEY_LALT],layer_keys[KEY_SPACE1],layer_keys[KEY_SPACE2])
+#define CREATE_LAYOUT(layer_keys) LAYOUT_treadstone(layer_keys[KEY_Q],layer_keys[KEY_W],layer_keys[KEY_E],layer_keys[KEY_R],layer_keys[KEY_T],layer_keys[KEY_ENC_1],layer_keys[KEY_Y],layer_keys[KEY_U],layer_keys[KEY_I],layer_keys[KEY_O],layer_keys[KEY_P],layer_keys[KEY_A],layer_keys[KEY_S],layer_keys[KEY_D],layer_keys[KEY_F],layer_keys[KEY_G],layer_keys[KEY_H],layer_keys[KEY_J],layer_keys[KEY_K],layer_keys[KEY_L],layer_keys[KEY_SEMICOLON],layer_keys[KEY_Z],layer_keys[KEY_X],layer_keys[KEY_C],layer_keys[KEY_V],layer_keys[KEY_B],layer_keys[KEY_ENC_3],layer_keys[KEY_N],layer_keys[KEY_M],layer_keys[KEY_COMMA],layer_keys[KEY_DOT],layer_keys[KEY_SLASH],layer_keys[KEY_LALT],layer_keys[KEY_SPACE1],layer_keys[KEY_SPACE2],layer_keys[KEY_LALT2])
 #define KC_HOME_A LSFT_T(KC_A)
 #define KC_HOME_S LGUI_T(KC_S)
 #define KC_HOME_D LALT_T(KC_D)
@@ -58,6 +58,7 @@ const uint16_t base_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_E] = KC_E,
     [KEY_R] = KC_R,
     [KEY_T] = KC_T,
+    [KEY_ENC_1] = _______,
     [KEY_Y] = KC_Y,
     [KEY_U] = KC_U,
     [KEY_I] = KC_I,
@@ -80,6 +81,7 @@ const uint16_t base_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_C] = KC_C,
     [KEY_V] = KC_V,
     [KEY_B] = KC_B,
+    [KEY_ENC_3] = _______,
     [KEY_N] = KC_N,
     [KEY_M] = KC_M,
     [KEY_COMMA] = KC_COMM,
@@ -89,45 +91,7 @@ const uint16_t base_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_LALT] = KC_MOD_LALT,
     [KEY_SPACE1] = KC_MOD_SPACE1,
     [KEY_SPACE2] = KC_SPC,
-};
-
-const uint16_t game_layer[MATRIX_ROWS * MATRIX_COLS] = {
-    [KEY_Q] = KC_Q,
-    [KEY_W] = KC_W,
-    [KEY_E] = KC_E,
-    [KEY_R] = KC_R,
-    [KEY_T] = KC_T,
-    [KEY_Y] = KC_Y,
-    [KEY_U] = KC_U,
-    [KEY_I] = KC_I,
-    [KEY_O] = KC_O,
-    [KEY_P] = KC_P,
-
-    [KEY_A] = KC_A,
-    [KEY_S] = KC_S,
-    [KEY_D] = KC_D,
-    [KEY_F] = KC_F,
-    [KEY_G] = KC_G,
-    [KEY_H] = KC_H,
-    [KEY_J] = KC_J,
-    [KEY_K] = KC_K,
-    [KEY_L] = KC_L,
-    [KEY_SEMICOLON] = KC_SCLN,
-
-    [KEY_Z] = KC_Z,
-    [KEY_X] = KC_X,
-    [KEY_C] = KC_C,
-    [KEY_V] = KC_V,
-    [KEY_B] = KC_B,
-    [KEY_N] = KC_N,
-    [KEY_M] = KC_M,
-    [KEY_COMMA] = KC_COMM,
-    [KEY_DOT] = KC_HOME_DOT,
-    [KEY_SLASH] = KC_HOME_DOT,
-
-    [KEY_LALT] = KC_LALT,
-    [KEY_SPACE1] = LT(LY_NUM, KC_SPC),
-    [KEY_SPACE2] = KC_SPC,
+    [KEY_LALT2] = MO(LY_NAV),
 };
 
 const uint16_t punc_layer[MATRIX_ROWS * MATRIX_COLS] = {
@@ -136,6 +100,7 @@ const uint16_t punc_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_E] = KC_HASH,
     [KEY_R] = KC_DOLLAR,
     [KEY_T] = KC_PERCENT,
+    [KEY_ENC_1] = _______,
     [KEY_Y] = KC_CIRCUMFLEX,
     [KEY_U] = KC_LBRC,
     [KEY_I] = KC_RBRC,
@@ -158,6 +123,7 @@ const uint16_t punc_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_C] = KC_QUES,
     [KEY_V] = KC_AMPERSAND,
     [KEY_B] = KC_PIPE,
+    [KEY_ENC_3] = _______,
     [KEY_N] = KC_ASTERISK,
     [KEY_M] = KC_LEFT_CURLY_BRACE,
     [KEY_COMMA] = KC_RIGHT_CURLY_BRACE,
@@ -167,6 +133,7 @@ const uint16_t punc_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_LALT] = _______,
     [KEY_SPACE1] = _______,
     [KEY_SPACE2] = _______,
+    [KEY_LALT2] = _______,
 };
 
 const uint16_t nav_layer[MATRIX_ROWS * MATRIX_COLS] = {
@@ -175,6 +142,7 @@ const uint16_t nav_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_E] = _______,
     [KEY_R] = _______,
     [KEY_T] = _______,
+    [KEY_ENC_1] = _______,
     [KEY_Y] = _______,
     [KEY_U] = KC_0,
     [KEY_I] = KC_UP,
@@ -197,6 +165,7 @@ const uint16_t nav_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_C] = _______,
     [KEY_V] = _______,
     [KEY_B] = _______,
+    [KEY_ENC_3] = _______,
     [KEY_N] = _______,
     [KEY_M] = _______,
     [KEY_COMMA] = _______,
@@ -206,6 +175,7 @@ const uint16_t nav_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_LALT] = _______,
     [KEY_SPACE1] = _______,
     [KEY_SPACE2] = _______,
+    [KEY_LALT2] = _______,
 };
 
 const uint16_t num_layer[MATRIX_ROWS * MATRIX_COLS] = {
@@ -214,6 +184,7 @@ const uint16_t num_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_E] = KC_3,
     [KEY_R] = KC_4,
     [KEY_T] = KC_5,
+    [KEY_ENC_1] = _______,
     [KEY_Y] = KC_6,
     [KEY_U] = KC_7,
     [KEY_I] = KC_8,
@@ -236,15 +207,17 @@ const uint16_t num_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_C] = _______,
     [KEY_V] = _______,
     [KEY_B] = KC_PIPE,
+    [KEY_ENC_3] = _______,
     [KEY_N] = KC_ASTERISK,
     [KEY_M] = KC_LCBR,
     [KEY_COMMA] = KC_RCBR,
     [KEY_DOT] = _______,
-    [KEY_SLASH] = TG(LY_GAME),
+    [KEY_SLASH] = _______,
 
     [KEY_LALT] = _______,
     [KEY_SPACE1] = _______,
     [KEY_SPACE2] = _______,
+    [KEY_LALT2] = _______,
 };
 
 const uint16_t f_layer[MATRIX_ROWS * MATRIX_COLS] = {
@@ -253,6 +226,7 @@ const uint16_t f_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_E] = KC_F3,
     [KEY_R] = KC_F4,
     [KEY_T] = KC_F5,
+    [KEY_ENC_1] = _______,
     [KEY_Y] = KC_F6,
     [KEY_U] = KC_F7,
     [KEY_I] = KC_F8,
@@ -270,20 +244,22 @@ const uint16_t f_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_L] = KC_F11,
     [KEY_SEMICOLON] = RSFT_T(KC_F12),
 
-    [KEY_Z] = _______,
+    [KEY_Z] = QK_BOOT,
     [KEY_X] = _______,
     [KEY_C] = _______,
     [KEY_V] = _______,
     [KEY_B] = _______,
-    [KEY_N] = _______,
-    [KEY_M] = _______,
+    [KEY_ENC_3] = _______,
+    [KEY_N] = RGB_VAD,
+    [KEY_M] = RGB_VAI,
     [KEY_COMMA] = _______,
     [KEY_DOT] = _______,
-    [KEY_SLASH] = TG(LY_GAME),
+    [KEY_SLASH] = _______,
 
     [KEY_LALT] = _______,
     [KEY_SPACE1] = KC_MEDIA_NEXT_TRACK,
     [KEY_SPACE2] = KC_MEDIA_PLAY_PAUSE,
+    [KEY_LALT2] = _______,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -292,7 +268,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LY_NAV] = CREATE_LAYOUT(nav_layer),
     [LY_NUM] = CREATE_LAYOUT(num_layer),
     [LY_F] = CREATE_LAYOUT(f_layer),
-    [LY_GAME] = CREATE_LAYOUT(game_layer),
+};
+
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+    [BASE] =   { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
+    [LY_PUNC] =   { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
+    [LY_NAV] =   { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
+    [LY_NUM] =   { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
+    [LY_F] =   { ENCODER_CCW_CW(RGB_HUD, RGB_HUI), ENCODER_CCW_CW(RGB_HUD, RGB_HUI), ENCODER_CCW_CW(RGB_HUD, RGB_HUI), ENCODER_CCW_CW(RGB_HUD, RGB_HUI) },
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -436,94 +419,41 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
     return true;
 }
 
-oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-    return OLED_ROTATION_180;
+
+const rgblight_segment_t PROGMEM base_layer_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 12, HSV_PINK}
+);
+const rgblight_segment_t PROGMEM nav_layer_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {6, 2, HSV_BLUE}
+);
+const rgblight_segment_t PROGMEM f_layer_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {10, 2, HSV_GREEN}
+);
+const rgblight_segment_t PROGMEM num_layer_rgb[] = RGBLIGHT_LAYER_SEGMENTS(
+    {8, 2, RGB_YELLOW}
+);
+// Now define the array of layers. Later layers take precedence
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    base_layer_rgb,
+    nav_layer_rgb,
+    f_layer_rgb,
+    num_layer_rgb
+);
+
+void keyboard_post_init_user(void) {
+    // Enable the LED layers
+    rgblight_layers = my_rgb_layers;
 }
 
-bool oled_task_user(void) {
-    // Host Keyboard Layer Status
-    oled_write_P(PSTR("Layer:"), false);
-    switch (get_highest_layer(layer_state)) {
-        case BASE:
-            oled_write_ln_P(PSTR(" BASE"), false);
-            break;
-        case LY_PUNC:
-            oled_write_ln_P(PSTR(" PUNC"), false);
-            break;
-        case LY_NAV:
-            oled_write_ln_P(PSTR(" NAV"), false);
-            break;
-        case LY_F:
-            oled_write_ln_P(PSTR(" FN"), false);
-            break;
-        case LY_NUM:
-            oled_write_ln_P(PSTR(" NUM"), false);
-            break;
-        case LY_GAME:
-            oled_write_ln_P(PSTR(" GAME"), false);
-            break;
-        default:
-            // Or use the write_ln shortcut over adding '\n' to the end of your string
-            oled_write_ln_P(PSTR(" UND"), false);
-    }
-
-    /* static const char image [] PROGMEM = { */
-    /* // 'REVIUNG39-mark-0', 128x32px */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x8f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x80, 0x00, 0x1f, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xc0, 0x00, 0x00, 0x00, 0x3f, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xff, */
-/* 0xff, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xff, */
-/* 0xff, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xff, */
-/* 0xff, 0x80, 0x00, 0x7f, 0x9f, 0xbb, 0xde, 0xf7, 0x39, 0xcf, 0xf0, 0x00, 0x00, 0x00, 0x01, 0xff, */
-/* 0xff, 0x80, 0x00, 0x7b, 0x9c, 0x3b, 0xde, 0xf7, 0x3d, 0xde, 0xf0, 0x00, 0x00, 0x00, 0x01, 0xff, */
-/* 0xff, 0x00, 0x00, 0x7b, 0x9c, 0x3b, 0x9e, 0xf7, 0x3d, 0xde, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, */
-/* 0xff, 0x00, 0x00, 0x7f, 0x1f, 0x9f, 0x9e, 0xf7, 0x3f, 0xdf, 0xf0, 0x00, 0x00, 0x00, 0x00, 0xff, */
-/* 0xfe, 0x00, 0x00, 0x7b, 0x9c, 0x1f, 0x9e, 0xf7, 0x3f, 0xde, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x7f, */
-/* 0xfe, 0x00, 0x00, 0x7b, 0x9c, 0x1f, 0x1e, 0xf7, 0x3b, 0xde, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x7f, */
-/* 0xfc, 0x00, 0x00, 0x7b, 0x9f, 0x9f, 0x1e, 0xff, 0x3b, 0xcf, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x3f, */
-/* 0xff, 0xe0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0xff, */
-/* 0xff, 0xff, 0xff, 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xfc, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3f, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0x08, 0x0a, 0x00, 0x00, 0x50, 0x10, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0x88, 0x0a, 0x00, 0x00, 0x50, 0x11, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xcf, 0x12, 0x00, 0x00, 0x48, 0xf3, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x80, 0x00, 0x00, 0x01, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, */
-/* 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff */
-    /* }; */
-
-    /* oled_write_raw_P(image, sizeof(image)); */
-
-    // Host Keyboard LED Status
-    /* led_t led_state = host_keyboard_led_state(); */
-    /* oled_write_P(PSTR("-----"), false); */
-    /* oled_write_P(PSTR("Stats"), false); */
-    /* oled_write_P(led_state.num_lock ? PSTR("num:*") : PSTR("num:."), false); */
-    /* oled_write_P(led_state.caps_lock ? PSTR("cap:*") : PSTR("cap:."), false); */
-    /* oled_write_P(led_state.scroll_lock ? PSTR("scr:*") : PSTR("scr:."), false); */
-
-    // Host Keyboard RGB backlight status
-    /* oled_write_P(PSTR("-----"), false); */
-    /* oled_write_P(PSTR("Light"), false); */
-
-    /* static char led_buf[30]; */
-    /* snprintf(led_buf, sizeof(led_buf) - 1, "RGB:%cM: %2d\nh: %2ds: %2dv: %2d\n", */
-    /*          rgblight_is_enabled() ? '*' : '.', (uint8_t)rgblight_get_mode(), */
-    /*          (uint8_t)(rgblight_get_hue() / RGBLIGHT_HUE_STEP), */
-    /*          (uint8_t)(rgblight_get_sat() / RGBLIGHT_SAT_STEP), */
-    /*          (uint8_t)(rgblight_get_val() / RGBLIGHT_VAL_STEP)); */
-    /* oled_write(led_buf, false); */
-
-    return false;
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(0, layer_state_cmp(state, BASE));
+    return state;
 }
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(1, layer_state_cmp(state, LY_NAV));
+    rgblight_set_layer_state(2, layer_state_cmp(state, LY_F));
+    rgblight_set_layer_state(3, layer_state_cmp(state, LY_NUM));
+    return state;
+}
+

@@ -12,10 +12,29 @@ enum keys {
     KEY_Q, KEY_W, KEY_E, KEY_R, KEY_T, KEY_Y, KEY_U, KEY_I, KEY_O, KEY_P,
     KEY_A, KEY_S, KEY_D, KEY_F , KEY_G, KEY_H, KEY_J, KEY_K, KEY_L, KEY_SEMICOLON,
     KEY_Z, KEY_X, KEY_C, KEY_V , KEY_B, KEY_N, KEY_M, KEY_COMMA, KEY_DOT,
-    KEY_LCTRL, KEY_LGUI, KEY_LALT, KEY_SPACE1, KEY_SPACE2, KEY_RALT, KEY_RGUI, KEY_RCTRL
+    KEY_LCTRL, KEY_LGUI, KEY_LALT, KEY_SPACE1, KEY_SPACE2, KEY_RALT,KEY_RGUI, KEY_RCTRL
+};
+
+enum custom_keycodes {
+    UP_CHANGE_LAYER = SAFE_RANGE,
+    DOWN_CHANGE_LAYER,
+    LEFT_CHANGE_LAYER,
+    RIGHT_CHANGE_LAYER,
 };
 
 #define CREATE_LAYOUT(layer_keys) LAYOUT(layer_keys[KEY_Q],layer_keys[KEY_W],layer_keys[KEY_E],layer_keys[KEY_R],layer_keys[KEY_T],layer_keys[KEY_Y],layer_keys[KEY_U],layer_keys[KEY_I],layer_keys[KEY_O],layer_keys[KEY_P],layer_keys[KEY_A],layer_keys[KEY_S],layer_keys[KEY_D],layer_keys[KEY_F],layer_keys[KEY_G],layer_keys[KEY_H],layer_keys[KEY_J],layer_keys[KEY_K],layer_keys[KEY_L],layer_keys[KEY_SEMICOLON],layer_keys[KEY_Z],layer_keys[KEY_X],layer_keys[KEY_C],layer_keys[KEY_V],layer_keys[KEY_B],layer_keys[KEY_N],layer_keys[KEY_M],layer_keys[KEY_COMMA],layer_keys[KEY_DOT],layer_keys[KEY_LCTRL],layer_keys[KEY_LGUI],layer_keys[KEY_LALT],layer_keys[KEY_SPACE1],layer_keys[KEY_SPACE2],layer_keys[KEY_RALT],layer_keys[KEY_RGUI],layer_keys[KEY_RCTRL])
+#define KC_HOME_A LSFT_T(KC_A)
+#define KC_HOME_S LGUI_T(KC_S)
+#define KC_HOME_D LALT_T(KC_D)
+#define KC_HOME_F LCTL_T(KC_F)
+#define KC_HOME_J LCTL_T(KC_J)
+#define KC_HOME_K LALT_T(KC_K)
+#define KC_HOME_L LGUI_T(KC_L)
+#define KC_HOME_SCLN LSFT_T(KC_SCLN)
+#define KC_HOME_Z KC_Z
+#define KC_HOME_DOT KC_DOT
+#define KC_MOD_SPACE1 MO(LY_NUM)
+#define KC_MOD_LALT MO(LY_F)
 
 const uint16_t base_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_Q] = KC_Q,
@@ -29,18 +48,18 @@ const uint16_t base_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_O] = KC_O,
     [KEY_P] = KC_P,
 
-    [KEY_A] = KC_A,
-    [KEY_S] = KC_S,
-    [KEY_D] = KC_D,
-    [KEY_F] = KC_F,
+    [KEY_A] = KC_HOME_A,
+    [KEY_S] = KC_HOME_S,
+    [KEY_D] = KC_HOME_D,
+    [KEY_F] = KC_HOME_F,
     [KEY_G] = KC_G,
     [KEY_H] = KC_H,
-    [KEY_J] = KC_J,
-    [KEY_K] = KC_K,
-    [KEY_L] = KC_L,
-    [KEY_SEMICOLON] = KC_SCLN,
+    [KEY_J] = KC_HOME_J,
+    [KEY_K] = KC_HOME_K,
+    [KEY_L] = KC_HOME_L,
+    [KEY_SEMICOLON] = KC_HOME_SCLN,
 
-    [KEY_Z] = LSFT_T(KC_Z),
+    [KEY_Z] = KC_HOME_Z,
     [KEY_X] = KC_X,
     [KEY_C] = KC_C,
     [KEY_V] = KC_V,
@@ -48,12 +67,12 @@ const uint16_t base_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_N] = KC_N,
     [KEY_M] = KC_M,
     [KEY_COMMA] = KC_COMM,
-    [KEY_DOT] = RSFT_T(KC_DOT),
+    [KEY_DOT] = KC_HOME_DOT,
 
     [KEY_LCTRL] = KC_LCTL,
     [KEY_LGUI] = KC_LGUI,
-    [KEY_LALT] = KC_LALT,
-    [KEY_SPACE1] = KC_HYPR,
+    [KEY_LALT] = KC_MOD_LALT,
+    [KEY_SPACE1] = KC_MOD_SPACE1,
     [KEY_SPACE2] = KC_SPC,
     [KEY_RALT] = KC_RALT,
     [KEY_RGUI] = KC_RGUI,
@@ -67,7 +86,7 @@ const uint16_t punc_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_R] = KC_DOLLAR,
     [KEY_T] = KC_PERCENT,
     [KEY_Y] = KC_CIRCUMFLEX,
-    [KEY_U] = KC_LBRC,
+    [KEY_U] = KC_AMPERSAND,
     [KEY_I] = KC_RBRC,
     [KEY_O] = KC_LEFT_PAREN,
     [KEY_P] = KC_RIGHT_PAREN,
@@ -163,10 +182,10 @@ const uint16_t num_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_D] = _______,
     [KEY_F] = _______,
     [KEY_G] = _______,
-    [KEY_H] = _______,
-    [KEY_J] = _______,
-    [KEY_K] = _______,
-    [KEY_L] = _______,
+    [KEY_H] = KC_LEFT,
+    [KEY_J] = KC_DOWN,
+    [KEY_K] = KC_UP,
+    [KEY_L] = KC_RIGHT,
     [KEY_SEMICOLON] = _______,
 
     [KEY_Z] = _______,
@@ -227,9 +246,9 @@ const uint16_t f_layer[MATRIX_ROWS * MATRIX_COLS] = {
     [KEY_LALT] = _______,
     [KEY_SPACE1] = KC_MEDIA_NEXT_TRACK,
     [KEY_SPACE2] = KC_MEDIA_PLAY_PAUSE,
-    [KEY_RALT] = _______,
-    [KEY_RGUI] = _______,
-    [KEY_RCTRL] = _______,
+    [KEY_RALT] = DT_UP,
+    [KEY_RGUI] = DT_DOWN,
+    [KEY_RCTRL] = DT_PRNT,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -240,17 +259,47 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LY_F] = CREATE_LAYOUT(f_layer),
 };
 
-bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LSFT_T(KC_Z):
-        case RSFT_T(KC_DOT):
-            // Immediately select the hold action when another key is pressed.
-            return true;
-        default:
-            // Do not select the hold action when another key is pressed.
-            return false;
+        case UP_CHANGE_LAYER:
+            if (record->event.pressed) {
+                tap_code(KC_UP);
+                layer_on(LY_NAV);
+            } else {
+                // when keycode QMKBEST is released
+                layer_off(LY_NAV);
+            }
+            break;
+        case DOWN_CHANGE_LAYER:
+            if (record->event.pressed) {
+                tap_code(KC_DOWN);
+                layer_on(LY_NAV);
+            } else {
+                // when keycode QMKBEST is released
+                layer_off(LY_NAV);
+            }
+            break;
+        case LEFT_CHANGE_LAYER:
+            if (record->event.pressed) {
+                tap_code(KC_LEFT);
+                layer_on(LY_NAV);
+            } else {
+                // when keycode QMKBEST is released
+                layer_off(LY_NAV);
+            }
+            break;
+        case RIGHT_CHANGE_LAYER:
+            if (record->event.pressed) {
+                tap_code(KC_RIGHT);
+                layer_on(LY_NAV);
+            } else {
+                // when keycode QMKBEST is released
+                layer_off(LY_NAV);
+            }
+            break;
     }
-}
+    return true;
+};
 
 
 #include "g/keymap_combo.h"
@@ -265,14 +314,6 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
           case FA_TAB:
           case JSCLN_ENT:
           case FD_LY_PUNC:
-          case DK_LY_NAV:
-          case DJ_LT_LYNAV_LEFT:
-          case DI_LT_LYNAV_UP:
-          case DK_LT_LYNAV_DOWN:
-          case DL_LT_LYNAV_RIGHT:
-          case SL_LY_NUM:
-          case ASCLNLSFT_TGLY_F:
-          case DK_LY_NUM:
           case FQ_ESC:
           case FW_AT:
           case FE_HASH:
@@ -302,34 +343,6 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
           case JV_AMPERSAND:
           case JB_PIPE:
           case JRSFT_DOT_SLSH:
-          case DU_0:
-          case DO_DOLLAR:
-          case LQ_1:
-          case SQ_1:
-          case LW_2:
-          case SE_3:
-          case LE_3:
-          case SR_4:
-          case LR_4:
-          case ST_5:
-          case LT_5:
-          case SY_6:
-          case LY_6:
-          case SU_7:
-          case LU_7:
-          case SI_8:
-          case LI_8:
-          case SO_9:
-          case SP_0:
-          case LP_0:
-          case AU_F7:
-          case SCLNU_F7:
-          case AI_F8:
-          case SCLNI_F8:
-          case AO_F9:
-          case SCLNO_F9:
-          case SP_F10:
-          case SCLNP_F10:
           case CW_CAW:
           case DW_DAW:
           case VW_VAW:

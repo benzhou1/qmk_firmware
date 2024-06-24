@@ -17,10 +17,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-/* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
-#define LOCKING_SUPPORT_ENABLE
-/* Locking resynchronize hack */
-#define LOCKING_RESYNC_ENABLE
+#define RGBLIGHT_LED_COUNT 12
+#define RGBLIGHT_LAYERS
+#define RGBLIGHT_DEFAULT_VAL 50
+#define RGBLIGHT_LAYERS_RETAIN_VAL
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 5
 #define TAPPING_TERM 150
@@ -28,18 +28,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define COMBO_TERM 40
 #define COMBO_SHOULD_TRIGGER
 
-/*
- * Feature disable options
- *  These options are also useful to firmware size reduction.
- */
-
-/* disable debug print */
-//#define NO_DEBUG
-
-/* disable print */
-//#define NO_PRINT
-
-/* disable action features */
-//#define NO_ACTION_LAYER
-//#define NO_ACTION_TAPPING
-//#define NO_ACTION_ONESHOT
